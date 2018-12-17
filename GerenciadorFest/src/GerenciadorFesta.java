@@ -24,7 +24,17 @@ public class GerenciadorFesta {
 			System.out.println(opcao);
 			
 			switch(opcao) {
-			case 1:
+				case 1:
+					cadastraClient(cliente);
+					break;
+				case 2:
+					cadastraFornecedor(fornecedor);
+					break;
+				case 3:
+					cadastraTema(tema, fornecedor);
+				case 4:
+					
+			
 				
 			
 			
@@ -263,16 +273,12 @@ public class GerenciadorFesta {
 				System.out.println("Tema nao encontrado ou inexistente. Deseja escolher outro tema? (S/N)");
 				aux = ler.nextLine();
 				ler.nextLine();
-				if(aux.equals("S"))
+				if(aux.equals("N"))
 					break;
 			}else {
 				for(Tema temaLocado: tL) {
 					if (temaLocado.equals(tem)){
-						System.out.println("Tema já alugado. Deseja escolher outro tema? (S/N)");
-						aux = ler.nextLine();
-						ler.nextLine();
-						if(aux.equals("S"))
-							break;
+						System.out.println("Tema ja alugado. Escolha outro tema");
 					}
 				}
 				break;
