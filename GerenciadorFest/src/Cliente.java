@@ -3,11 +3,11 @@ public class Cliente extends Pessoa {
 	
 	private String dataCadastro;
 
-	private String getDataCadastro() {
+	public String getDataCadastro() {
 		return dataCadastro;
 	}
 
-	private void setDataCadastro(String dataCadastro) {
+	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 	

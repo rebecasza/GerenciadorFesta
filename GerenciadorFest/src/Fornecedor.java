@@ -4,7 +4,7 @@ public class Fornecedor extends Pessoa {
 
 	private ArrayList<String> produto;
 
-	private ArrayList<String> getProduto() {
+	public ArrayList<String> getProduto() {
 		return produto;
 	}
 
