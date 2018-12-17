@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -69,7 +68,7 @@ public class GerenciadorFesta {
 		
 		Cliente cli = new Cliente(n,t, end, d);
 		c.add(cli);
-		
+		ler.close();
 	}
 
 	//Metodo para cadastrar fornecedores
@@ -115,7 +114,7 @@ public class GerenciadorFesta {
 		Fornecedor fo = new Fornecedor(n,t,end,p);
 		
 		f.add(fo);
-				
+		ler.close();		
 		
 		
 	}
@@ -174,6 +173,7 @@ public class GerenciadorFesta {
 		
 		Tema tema = new Tema(n, i, cT, f, p);
 		t.add(tema);
+		ler.close();
 	}
 	
 	public static Fornecedor buscaFornecedor(ArrayList<Fornecedor> f) {
@@ -183,16 +183,19 @@ public class GerenciadorFesta {
 		String nome = ler.nextLine();
 		ler.nextLine();
 		
-		if(f.isEmpty())
+		if(f.isEmpty()) {
+			ler.close();
 			return null;
+		}
 		else {
 			for(Fornecedor forn: f) {
 				if(forn.getNome().equals(nome)) {
+					ler.close();
 					return forn;
 				}
 			}
 		}
-		
+		ler.close();
 		return null;
 		
 	}
@@ -204,16 +207,19 @@ public class GerenciadorFesta {
 		String nome = ler.nextLine();
 		ler.nextLine();
 		
-		if(c.isEmpty())
+		if(c.isEmpty()) {
+			ler.close();
 			return null;
+		}
 		else {
 			for(Cliente cli : c) {
 				if(cli.getNome().equals(nome)) {
+					ler.close();
 					return cli;
 				}
 			}
 		}
-		
+		ler.close();
 		return null;
 		
 	}
@@ -225,16 +231,19 @@ public class GerenciadorFesta {
 		String nome = ler.nextLine();
 		ler.nextLine();
 		
-		if(t.isEmpty())
+		if(t.isEmpty()) {
+			ler.close();
 			return null;
+		}
 		else {
 			for(Tema tem: t) {
 				if(tem.getNome().equals(nome)) {
+					ler.close();
 					return tem;
 				}
 			}
 		}
-		
+		ler.close();
 		return null;
 		
 	}
@@ -246,7 +255,8 @@ public class GerenciadorFesta {
 		Tema tem;
 		String aux;
 		
-		while(true) {
+		while(true) {//testar, acho que nao vai funcionar
+			
 			tem = buscaTema(t);
 			
 			if(tem == null) {
@@ -268,6 +278,7 @@ public class GerenciadorFesta {
 				break;
 			}
 		}
+		ler.close();
 	}
 	//Metodo para a escolha do menu
 	public static int menu() {
@@ -285,7 +296,7 @@ public class GerenciadorFesta {
 		x = ler.nextInt();
 		System.out.println("\n\n\n\n\n");
 
-	
+		ler.close();
 		return x;
 		
 	}
