@@ -48,7 +48,12 @@ public class GerenciadorFesta {
 
 	} 
 	
-	//Metodo para cadastrar clientes
+	
+	/**
+	 * Metodo para cadastrar novos clientes na lista de clientes
+	 * 
+	 * @param c
+	 */
 	public static void cadastraClient(ArrayList <Cliente> c) {
 		
 		Scanner ler = new Scanner(System.in);
@@ -81,7 +86,11 @@ public class GerenciadorFesta {
 		ler.close();
 	}
 
-	//Metodo para cadastrar fornecedores
+	/**
+	 * Metodo para cadastrar novos fornecedores na lista de fornecedores
+	 * 
+	 * @param f -> variavel do tipo Fornecedor que possui todos os fornecedores cadastrados
+	 */
 	public static void cadastraFornecedor(ArrayList <Fornecedor> f) {
 		
 		
@@ -129,6 +138,12 @@ public class GerenciadorFesta {
 		
 	}
 	
+	/**
+	 * Metodo pra cadastrar novos temas na lista de temas
+	 * 
+	 * @param t -> variavel do tipo Tema que possui todos os temas cadastrados
+	 * @param f -> variavel do tipo Fornecedor que possui todos os fornecedores cadastrados
+	 */
 	public static void cadastraTema(ArrayList <Tema> t, ArrayList<Fornecedor> f) {
 		
 		
@@ -186,6 +201,12 @@ public class GerenciadorFesta {
 		ler.close();
 	}
 	
+	/**
+	 * Metodo para procurar um fornecedor entre os cadastrados 
+	 * 
+	 * @param f -> variavel do tipo Fornecedor que possui todos os fornecedores cadastrados
+	 * @return fornecedor -> retorna o um objeto fornecedor se encontrado, caso contrario retorna null
+	 */
 	public static Fornecedor buscaFornecedor(ArrayList<Fornecedor> f) {
 		
 		Scanner ler = new Scanner(System.in);
@@ -210,6 +231,12 @@ public class GerenciadorFesta {
 		
 	}
 
+	/**
+	 * Metodo para procurar um cliente entre os cadastrados 
+	 * 
+	 * @param c -> variavel do tipo Cliente que possui todos os clientes cadastrados
+	 * @return cliente -> retorna o um objeto cliente se encontrado, caso contrario retorna null
+	 */
 	public static Cliente buscaCliente(ArrayList<Cliente> c) {
 		
 		Scanner ler = new Scanner(System.in);
@@ -233,7 +260,13 @@ public class GerenciadorFesta {
 		return null;
 		
 	}
-
+	
+	/**
+	 * Metodo para procurar um tema entre os cadastrados 
+	 * 
+	 * @param t -> variavel do tipo Tena que possui todos os temas cadastrados
+	 * @return tema -> retorna o um objeto Tema se encontrado, caso contrario retorna null
+	 */
 	public static Tema buscaTema(ArrayList<Tema> t) {
 		
 		Scanner ler = new Scanner(System.in);
@@ -257,7 +290,15 @@ public class GerenciadorFesta {
 		return null;
 		
 	}
-
+	
+	/**
+	 * Metodo para cadastrar uma nova locacao
+	 * 
+	 * @param a -> variavel do tipo Aluguel que possui todas as locacoes cadastrados
+	 * @param c -> variavel do tipo Cliente que possui todos os clientes cadastrados
+	 * @param t -> variavel do tipo Tema que possui todos os temas cadastrados
+	 * @param tL -> variavel do tipo Tema que possui todos os TEMAS LOCADOS 
+	 */
 	public static void cadastraAluguel(ArrayList<Aluguel> a, ArrayList<Cliente> c, ArrayList<Tema> t, ArrayList<Tema> tL ) {
 
 		Scanner ler = new Scanner(System.in);
@@ -286,7 +327,13 @@ public class GerenciadorFesta {
 		}
 		ler.close();
 	}
+	
 	//Metodo para a escolha do menu
+	/**
+	 * Metodo que desenha o menu no terminal
+	 * 
+	 * @return inteiro -> retorna o valor escolhido no menu
+	 */
 	public static int menu() {
 		
 		int x = 0;
