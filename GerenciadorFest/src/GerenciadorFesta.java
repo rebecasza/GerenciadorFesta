@@ -12,13 +12,10 @@ public class GerenciadorFesta {
 		ArrayList<Aluguel> aluguel = new  ArrayList<Aluguel>();
 		ArrayList<Tema> tema = new  ArrayList<Tema>();
 		ArrayList<TemaLocado> temasLocados = new  ArrayList<TemaLocado>();
-
-		//inicializa o programa com algumas variaveis
-		inicializaTestes(cliente, fornecedor, aluguel, tema, temasLocados);
-		
 		int opcao = 0;
 
-
+		//inicializa o programa com algumas variaveis principaise
+		inicializaTestes(cliente, fornecedor, aluguel, tema, temasLocados);
 
 		//Inicio do loop do menu
 		while(true) {
@@ -80,7 +77,6 @@ public class GerenciadorFesta {
 		}
 	} 
 
-
 	/**
 	 * Metodo para cadastrar novos clientes na lista de clientes
 	 * 
@@ -94,24 +90,18 @@ public class GerenciadorFesta {
 		String end = null;
 		String d = null;
 
-
 		System.out.println("\n\n\n---Cadastro Cliente---");
 		System.out.println("\nDigite o nome: ");
 		n = ler.nextLine();
-		//ler.nextLine();
 
 		System.out.print("\nDigite o telefone: ");
 		t = ler.nextLine();
-		//ler.nextLine();
 
 		System.out.print("\nDigite o endereco: ");
 		end = ler.nextLine();
-		////ler.nextLine();
 
 		System.out.print("\nDigite a data do cadastro: ");
 		d = ler.nextLine();
-		//ler.nextLine();
-
 
 		Cliente cli = new Cliente(n,t, end, d);
 		c.add(cli);
@@ -223,10 +213,8 @@ public class GerenciadorFesta {
 		Scanner ler = new Scanner(System.in);
 		System.out.print("\n Digite o nome do fornecedor:");
 		String nome = ler.nextLine();
-		//ler.nextLine();
 
 		if(f.isEmpty()) {
-//			System.out.println("/Sem fornecedores cadastrados!");
 			return null;
 		}
 		else {
@@ -236,7 +224,6 @@ public class GerenciadorFesta {
 				}
 			}
 		}
-//		System.out.println("Fornecedor nao encontrado!");
 		return null;
 
 	}
@@ -252,10 +239,8 @@ public class GerenciadorFesta {
 		Scanner ler = new Scanner(System.in);
 		System.out.print("\n Digite o nome do cliente:");
 		String nome = ler.nextLine();
-		//ler.nextLine();
 
 		if(c.isEmpty()) {
-//			System.out.println("Nao existem clientes cadastrados!");
 			return null;
 		}
 		else {
@@ -265,7 +250,6 @@ public class GerenciadorFesta {
 				}
 			}
 		}
-//		System.out.println("Cliente nao encontrado!");
 		return null;
 
 	}
@@ -334,22 +318,22 @@ public class GerenciadorFesta {
 				System.out.println("Tema nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(tem == null);
 
-		
+		flagLocacao = true;
+		do {//continua ate a flagLocacao ser true, ou seja, o tema nao esta locado naquela data
 
-		do {//continua ate a flag ser falsa, ou seja, o tema nao esta locado naquela data
-			flagLocacao = false;
 			System.out.print("\nDigite a data: (ex: dd/mm)");
 			d = ler.nextLine();
-			
-			for (TemaLocado temp : tL) {
-				if(temp.getData().equals(d) && temp.getTema().equals(tem))
-					flagLocacao = true;
-				System.out.print("Este tema ja esta reservado para esta data! Escolha outro tema ou outra data.");
-			}
-		}while(flagLocacao);
-		
-		
 
+			for (TemaLocado temp : tL) {
+				if(temp.getData().equals(d) && temp.getTema().equals(tem)) {
+					System.out.print("Este tema ja esta reservado para esta data! Escolha outra data.");
+					break;
+				}else
+					flagLocacao = false;
+
+			}
+		}while(flagLocacao);	
+		
 		System.out.print("\nDigite hora inicial da festa: (ex: 9am)");
 		hI = ler.nextLine();
 		
@@ -758,7 +742,7 @@ public class GerenciadorFesta {
 	public static void removerFornecedor(ArrayList<Fornecedor> f) {
 		Fornecedor forn;
 		
-		do {//busca o fornecedor que se quer remover
+		do {
 			forn = buscaFornecedor(f);
 			if(forn == null)
 				System.out.println("Fornecedor nao encontrado ou inexistente! Tente novamente.\n\n");
@@ -827,13 +811,13 @@ public class GerenciadorFesta {
 		
 
 		//add clientes teste
-		Cliente cli1 = new Cliente("José da Silva","11971712345", "Rua Paraiso, 301", "11-10-2018");
+		Cliente cli1 = new Cliente("Rebeca Souza","11971712345", "Rua Paraiso, 301", "12-10-2018");
 		c.add(cli1);
-		Cliente cli2 = new Cliente("Maria dos Santos","2199756789", "Avenida da Conquista 3451", "15-06-2018");
+		Cliente cli2 = new Cliente("Hugo Harada","2199756789", "Avenida da Conquista 3451", "15-06-2018");
 		c.add(cli2);
 		Cliente cli3 = new Cliente("Rodolfo Santini","119767456", "Avenida dos Estados 55", "30-11-2018");
 		c.add(cli3);
-		Cliente cli4 = new Cliente("João Felipe dos Santos","1155674356", "Rua da Alagoa 33", "04-03-2018");
+		Cliente cli4 = new Cliente("Joao Felipe dos Santos","1155674356", "Rua da Alagoa 33", "04-03-2018");
 		c.add(cli4);
 		Cliente cli5 = new Cliente("Mario Pereira","1278906788", "Avenida Ajarani 204", "26-01-2018");
 		c.add(cli5);
@@ -895,11 +879,11 @@ public class GerenciadorFesta {
 		t.add(tema6);
 		
 		//add aluguel teste
-		Aluguel a1 = new Aluguel(cli1,tema1,tema1.getPreco()*0.8,"12/12","9am","18pm","Avenida Paulista",80,false);
+		Aluguel a1 = new Aluguel(cli1,tema1,tema1.getPreco()*0.8,"29/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a1);
-		Aluguel a2 = new Aluguel(cli3,tema2,tema2.getPreco()*0.8,"10/12","9am","18pm","Avenida Reboucas",80,false);
+		Aluguel a2 = new Aluguel(cli3,tema2,tema2.getPreco()*0.8,"04/12","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a2);
-		Aluguel a3 = new Aluguel(cli3,tema3,tema3.getPreco()*0.8,"15/05","9am","18pm","Avenida Reboucas",80,false);
+		Aluguel a3 = new Aluguel(cli3,tema3,tema3.getPreco()*0.8,"15/12","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a3);
 		Aluguel a4 = new Aluguel(cli3,tema4,tema4.getPreco()*0.8,"13/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a4);
@@ -909,12 +893,12 @@ public class GerenciadorFesta {
 		a.add(a6);
 		
 		//add Temas locados
-		TemaLocado tLoc1 = new TemaLocado(tema1,"12/12");
-		TemaLocado tLoc2 = new TemaLocado(tema2,"10/12");
-		TemaLocado tLoc3 = new TemaLocado(tema3,"10/12");
-		TemaLocado tLoc4 = new TemaLocado(tema4,"10/12");
-		TemaLocado tLoc5 = new TemaLocado(tema5,"10/12");
-		TemaLocado tLoc6 = new TemaLocado(tema6,"10/12");
+		TemaLocado tLoc1 = new TemaLocado(tema1,"29/12");
+		TemaLocado tLoc2 = new TemaLocado(tema2,"04/12");
+		TemaLocado tLoc3 = new TemaLocado(tema3,"15/12");
+		TemaLocado tLoc4 = new TemaLocado(tema4,"13/12");
+		TemaLocado tLoc5 = new TemaLocado(tema5,"05/12");
+		TemaLocado tLoc6 = new TemaLocado(tema6,"20/12");
 
 		tL.add(tLoc1);
 		tL.add(tLoc2);
