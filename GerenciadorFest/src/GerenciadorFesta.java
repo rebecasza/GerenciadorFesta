@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class GerenciadorFesta {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		//Iniciando as variaveis
 		ArrayList<Cliente> cliente = new  ArrayList<Cliente>();
@@ -12,12 +11,10 @@ public class GerenciadorFesta {
 		ArrayList<Aluguel> aluguel = new  ArrayList<Aluguel>();
 		ArrayList<Tema> tema = new  ArrayList<Tema>();
 		ArrayList<TemaLocado> temasLocados = new  ArrayList<TemaLocado>();
-
+		int opcao = 0;
+		
 		//inicializa o programa com algumas variaveis
 		inicializaTestes(cliente, fornecedor, aluguel, tema, temasLocados);
-		
-		int opcao = 0;
-
 
 
 		//Inicio do loop do menu
@@ -27,55 +24,54 @@ public class GerenciadorFesta {
 			System.out.println(opcao);
 
 			switch(opcao) {
-			case 1:
+			case 1: //cadastra novo cliente
 				cadastraClient(cliente);
 				break;
-			case 2:
+			case 2: //cadastra novo fornecedor
 				cadastraFornecedor(fornecedor);
 				break;
-			case 3:
+			case 3: //cadastra novo tema
 				cadastraTema(tema, fornecedor);
 				break;
-			case 4:
+			case 4: //cadastra novo aluguel
 				cadastraAluguel(aluguel, cliente, tema, temasLocados);
 				break;
-			case 5:
+			case 5: //finaliza aluguel existente
 				finalizaAluguel(aluguel, temasLocados);
 				break;
-			case 6:
+			case 6: // imprime todos os clientes
 				imprimeTodosClientes(cliente);
 				break;
-			case 7:
+			case 7: // imprime todos os fornecedores
 				imprimeTodosFornecedores(fornecedor);
 				break;
-			case 8:
+			case 8: // imprime todos os temas
 				imprimeTodosTemas(tema);
 				break;
-			case 9:
+			case 9: //imprime todos os alugueis
 				imprimeTodosAlugueis(aluguel);
 				break;
-			case 10:
+			case 10: //imprime todos os TemaLocados e as datas da locacao
 				imprimeTodosTemasLocados(temasLocados);
 				break;
-			case 11:
+			case 11: // edita um cliente
 				editarCliente(cliente);
 				break;
-			case 12:
+			case 12: // edita um tema
 				editarTema(tema);
 				break;
-			case 13:
+			case 13: //edita um fornecedor
 				editarFornecedor(fornecedor);
 				break;
-			case 14:
+			case 14: // remove um cliente
 				removerCliente(cliente);
 				break;
-			case 15:
+			case 15: //remove um tema
 				removerTema(tema);
 				break;
-			case 16:
+			case 16: //remove um fornecedor
 				removerFornecedor(fornecedor);
 				break;
-			//uehuehuehuehe
 			}
 		}
 	} 
@@ -112,8 +108,9 @@ public class GerenciadorFesta {
 		d = ler.nextLine();
 		//ler.nextLine();
 
-
+		//cria um objeto cliente
 		Cliente cli = new Cliente(n,t, end, d);
+		//add cli no arraylist c
 		c.add(cli);
 	}
 
@@ -382,6 +379,13 @@ public class GerenciadorFesta {
 		Aluguel al = new Aluguel(cli,tem,pF,d,hI,hF,e,qP,false);
 	}
 	
+	
+	/**
+	 * Metodo que finaliza um aluguel alterando a flag LocacaoFinalizada dentro de um aluguel. Tambem remove a locacao do ArrayList de TemasLocals
+	 * 
+	 * @param a -> ArrayList com todos os alugueis
+	 * @param tL -> ArrayList com todos os temas locados
+	 */
 	public static void finalizaAluguel(ArrayList<Aluguel> a, ArrayList<TemaLocado> tL) {
 		Aluguel alu = null;
 		TemaLocado tempTemaLocado = null;
@@ -422,6 +426,11 @@ public class GerenciadorFesta {
 		
 	}
 	
+	/**
+	 * Metodopara imprimir um Cliente no console
+	 * 
+	 * @param cli -> variavel do tipo Cliente 
+	 */
 	public static void imprimeUmCliente(Cliente cli) {
 		
 		System.out.println("\n\n----Informacoes do cliente----");
@@ -433,6 +442,11 @@ public class GerenciadorFesta {
 		
 	}
 	
+	/**
+	 * Metodo para imprimir todos os clientes existentes no arrayList c
+	 * 
+	 * @param c -> variavel do tipo ArrayList de Cliente que possui todos os clientes 
+	 */
 	public static void imprimeTodosClientes(ArrayList<Cliente> c) {
 		
 		if(c.isEmpty()) {
@@ -443,6 +457,11 @@ public class GerenciadorFesta {
 			imprimeUmCliente(cli);
 	}
 
+	/**
+	 * Metodo para imprimir um Fornecedor no console
+	 * 
+	 * @param forn -> variavel do tipo Fornecedor 
+	 */
 	public static void imprimeUmFornecedor(Fornecedor forn) {
 		
 		System.out.println("\n\n----Informacoes do fornecedor----");
@@ -454,6 +473,11 @@ public class GerenciadorFesta {
 			System.out.println("Produto:" +s);
 	}
 	
+	/**
+	 * Metodo para imprimir todos os fornecedores existentes no arrayList f
+	 * 
+	 * @param f -> variavel do tipo ArrayList de Fornecedor que possui todos os fornecedores 
+	 */
 	public static void imprimeTodosFornecedores(ArrayList<Fornecedor> f) {
 		
 		if(f.isEmpty()) {
@@ -464,6 +488,12 @@ public class GerenciadorFesta {
 			imprimeUmFornecedor(forn);
 	}
 	
+	
+	/**
+	 * Metodo para imprimir um Tema na console
+	 * 
+	 * @param t -> variavel do tipo Tema 
+	 */
 	public static void imprimeUmTema(Tema t) {
 		
 		System.out.println("\n\n----Informacoes do Tema----\n");
@@ -481,6 +511,11 @@ public class GerenciadorFesta {
 		
 	}
 	
+	/**
+	 * Metodo para imprimir todos os temas existentes no arrayList t
+	 * 
+	 * @param t -> variavel do tipo ArrayList de Tema que possui todos os Temas 
+	 */
 	public static void imprimeTodosTemas(ArrayList<Tema> t) {
 		
 		if(t.isEmpty()) {
@@ -491,6 +526,11 @@ public class GerenciadorFesta {
 			imprimeUmTema(tema);
 	}
 	
+	/**
+	 * Metodo para imprimir uma locacao no console
+	 * 
+	 * @param a -> variavel do tipo Aluguel
+	 */
 	public static void imprimeUmAluguel(Aluguel a) {
 		
 		System.out.println("\n\n----Informacoes do Aluguel----\n");
@@ -509,6 +549,11 @@ public class GerenciadorFesta {
 		
 	}
 	
+	/**
+	 * Metodo para imprimir todos os alugueis existentes no arrayList a
+	 * 
+	 * @param a -> variavel do tipo ArrayList de Aluguel que possui todos os alugueis cadastradosv 
+	 */
 	public static void imprimeTodosAlugueis(ArrayList<Aluguel> a) {
 		
 		if(a.isEmpty()) {
@@ -520,6 +565,11 @@ public class GerenciadorFesta {
 		
 	}
 	
+	/**
+	 * Metodo para imprimir um Tema Locado
+	 * 
+	 * @param tl variavel do tipo TemaLocado
+	 */
 	public static void imprimeUmTemaLocado(TemaLocado tl) {
 		System.out.println("\n\n----Informacoes sobre temas locados----\n");
 		System.out.println("Nome do tema: " + tl.getTema().getNome());
@@ -528,6 +578,11 @@ public class GerenciadorFesta {
 
 	}
 	
+	/**
+	 * Metodo para imprimir todos os temas locados existentes no arrayList tl
+	 * 
+	 * @param tl ->variavel do tipo ArrayList de TemaLocado que possui todos os temas locados  
+	 */
 	public static void imprimeTodosTemasLocados(ArrayList<TemaLocado> tl) {
 		
 		if(tl.isEmpty()) {
@@ -539,6 +594,12 @@ public class GerenciadorFesta {
 
 	}
 	
+	
+	/**
+	 * Metodo para editar um cliente
+	 * 
+	 * @param c -> ArrayList com todos os clientes
+	 */
 	public static void editarCliente(ArrayList<Cliente> c) {
 		
 		Cliente cli;
@@ -588,6 +649,11 @@ public class GerenciadorFesta {
 
 	}
 	
+	/**
+	 * Metodo para editar um fornecedor
+	 * 
+	 * @param f -> ArrayList com todos os fornecedores
+	 */
 	public static void editarFornecedor(ArrayList<Fornecedor> f) {
 		
 		Fornecedor forn;
@@ -638,6 +704,11 @@ public class GerenciadorFesta {
 		System.out.println("Edicoes realizadas com sucesso!");
 	}
 	
+	/**
+	 * Metodo para editar um Tema
+	 * 
+	 * @param t -> ArrayList com todos os temas 
+	 */
 	public static void editarTema(ArrayList<Tema> t) {
 		
 		Tema tem;
@@ -743,6 +814,12 @@ public class GerenciadorFesta {
 		System.out.println("Edicoes realizadas com sucesso!");
 	}
 	
+	
+	/**
+	 * Metodo para remover um cliente
+	 * 
+	 * @param c -> ArrayList com todos os clientes
+	 */
 	public static void removerCliente(ArrayList<Cliente> c) {
 		Cliente cli;
 		
@@ -755,6 +832,11 @@ public class GerenciadorFesta {
 		c.remove(cli);
 	}
 	
+	/**
+	 * Metodo para remover um fornecedor
+	 * 
+	 * @param f -> ArrayList com todos os fornecedores
+	 */
 	public static void removerFornecedor(ArrayList<Fornecedor> f) {
 		Fornecedor forn;
 		
@@ -767,6 +849,11 @@ public class GerenciadorFesta {
 		f.remove(forn);
 	}
 	
+	/**
+	 * Metodo para remover um Tema
+	 * 
+	 * @param t -> ArrayList com todos os temas 
+	 */
 	public static void removerTema(ArrayList<Tema> t) {
 		Tema tem;
 		
@@ -821,7 +908,15 @@ public class GerenciadorFesta {
 
 	}
 	
-	
+	/**
+	 * Metodo para inicializar alguns objetos
+	 * 
+	 * @param c -> ArrayList de Clientes
+	 * @param f -> ArrayList de Fornecedores
+	 * @param a -> ArrayList de Alugueis
+	 * @param t -> ArrayList de Temas
+	 * @param tL -> ArrayList de TemasLocados
+	 */
 	public static void inicializaTestes(ArrayList<Cliente> c, ArrayList<Fornecedor> f, ArrayList<Aluguel> a, ArrayList<Tema> t, ArrayList<TemaLocado> tL) {
 		
 		
