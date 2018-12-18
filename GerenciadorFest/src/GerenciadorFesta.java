@@ -804,7 +804,7 @@ public class GerenciadorFesta {
 		System.out.println("13) Editar fornecedor");
 		System.out.println("14) Remover cliente");
 		System.out.println("15) Remover tema");
-		System.out.println("16) Remover fornecedofr");
+		System.out.println("16) Remover fornecedor");
 
 
 
@@ -827,40 +827,40 @@ public class GerenciadorFesta {
 		
 
 		//add clientes teste
-		Cliente cli1 = new Cliente("jose","123", "av paulista", "11-10-2018");
+		Cliente cli1 = new Cliente("José da Silva","11971712345", "Rua Paraiso, 301", "11-10-2018");
 		c.add(cli1);
-		Cliente cli2 = new Cliente("maria","123", "av paulista", "11-10-2018");
+		Cliente cli2 = new Cliente("Maria dos Santos","2199756789", "Avenida da Conquista 3451", "15-06-2018");
 		c.add(cli2);
-		Cliente cli3 = new Cliente("rodorfo","123", "av paulista", "11-10-2018");
+		Cliente cli3 = new Cliente("Rodolfo Santini","119767456", "Avenida dos Estados 55", "30-11-2018");
 		c.add(cli3);
-		Cliente cli4 = new Cliente("joao","123", "av paulista", "11-10-2018");
+		Cliente cli4 = new Cliente("João Felipe dos Santos","1155674356", "Rua da Alagoa 33", "04-03-2018");
 		c.add(cli4);
-		Cliente cli5 = new Cliente("mario","123", "av paulista", "11-10-2018");
+		Cliente cli5 = new Cliente("Mario Pereira","1278906788", "Avenida Ajarani 204", "26-01-2018");
 		c.add(cli5);
-		Cliente cli6 = new Cliente("luigi","123", "av paulista", "11-10-2018");
+		Cliente cli6 = new Cliente("Flavio Freitas","4567890234", "Rua Waldemar 432", "28-04-2018");
 		c.add(cli6);
-		Cliente cli7 = new Cliente("browser","123", "av paulista", "11-10-2018");
+		Cliente cli7 = new Cliente("Ana Paula dos Santos","1176853446", "Rua dos Perdizes, 102", "08-07-2018");
 		c.add(cli7);
 		
 		//add fornecedores teste
 		ArrayList<String> p1 = new ArrayList<String>();
-		p1.add("lenco");
-		p1.add("papel");
-		p1.add("copo");
+		p1.add("Lenco");
+		p1.add("Papel");
+		p1.add("Copo");
 		ArrayList<String> p2 = new ArrayList<String>();
-		p2.add("prato");
-		p2.add("talher");
-		p2.add("louca");
+		p2.add("Prato");
+		p2.add("Talher");
+		p2.add("Louca");
 		ArrayList<String> p3 = new ArrayList<String>();
-		p3.add("potes");
-		p3.add("lembracas");
-		p3.add("embalagens");
+		p3.add("Potes");
+		p3.add("Lembracas");
+		p3.add("Embalagens");
 		
-		Fornecedor forn1 = new Fornecedor("Doces e cia", "fg","gf",p1);
+		Fornecedor forn1 = new Fornecedor("Doces e cia", "1176612345","Rua Fernandes, 402",p1);
 		f.add(forn1);
-		Fornecedor forn2 = new Fornecedor("Emabagens e cia", "fg","gf",p2);
+		Fornecedor forn2 = new Fornecedor("Emabalagens e cia", "1176554433","Avenida Mariana, 5567",p2);
 		f.add(forn2);
-		Fornecedor forn3 = new Fornecedor("Descartaveis e cia", "fg","gf",p3);
+		Fornecedor forn3 = new Fornecedor("Descartaveis e cia", "11765543878","Rua das Pedras, 897",p3);
 		f.add(forn3);
 		
 		//add temas teste
@@ -885,19 +885,43 @@ public class GerenciadorFesta {
 		t.add(tema1);
 		Tema tema2 = new Tema("Festa sem cor", ps2,"Cinza", f2, 200);
 		t.add(tema2);
+		Tema tema3 = new Tema("Festa Princesa", ps2,"Rosa", f2, 300);
+		t.add(tema3);
+		Tema tema4 = new Tema("Festa Bruxa", ps2,"Roxa", f2, 400);
+		t.add(tema4);
+		Tema tema5 = new Tema("Festa Carro", ps2,"Vermelho", f2, 500);
+		t.add(tema4);
+		Tema tema6 = new Tema("Festa Heroi", ps2,"Verde", f2, 600);
+		t.add(tema6);
 		
 		//add aluguel teste
-		Aluguel a1 = new Aluguel(cli1,tema1,tema1.getPreco()*0.8,"12/12","9am","18pm","av paulista",80,false);
+		Aluguel a1 = new Aluguel(cli1,tema1,tema1.getPreco()*0.8,"12/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a1);
-		Aluguel a2 = new Aluguel(cli3,tema2,tema2.getPreco()*0.8,"10/12","9am","18pm","av reboucas",80,false);
+		Aluguel a2 = new Aluguel(cli3,tema2,tema2.getPreco()*0.8,"10/12","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a2);
+		Aluguel a3 = new Aluguel(cli3,tema3,tema3.getPreco()*0.8,"15/05","9am","18pm","Avenida Reboucas",80,false);
+		a.add(a3);
+		Aluguel a4 = new Aluguel(cli3,tema4,tema4.getPreco()*0.8,"13/12","9am","18pm","Avenida Paulista",80,false);
+		a.add(a4);
+		Aluguel a5 = new Aluguel(cli3,tema5,tema5.getPreco()*0.8,"05/12","9am","18pm","Avenida Paulista",80,false);
+		a.add(a5);
+		Aluguel a6 = new Aluguel(cli3,tema6,tema6.getPreco()*0.8,"20/12","9am","18pm","Avenida Reboucas",80,false);
+		a.add(a6);
 		
 		//add Temas locados
 		TemaLocado tLoc1 = new TemaLocado(tema1,"12/12");
 		TemaLocado tLoc2 = new TemaLocado(tema2,"10/12");
+		TemaLocado tLoc3 = new TemaLocado(tema3,"10/12");
+		TemaLocado tLoc4 = new TemaLocado(tema4,"10/12");
+		TemaLocado tLoc5 = new TemaLocado(tema5,"10/12");
+		TemaLocado tLoc6 = new TemaLocado(tema6,"10/12");
+
 		tL.add(tLoc1);
 		tL.add(tLoc2);
-		
+		tL.add(tLoc3);
+		tL.add(tLoc4);
+		tL.add(tLoc5);
+		tL.add(tLoc6);
 		
 		
 		
