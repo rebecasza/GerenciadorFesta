@@ -8,12 +8,28 @@ public class Aluguel {
 	private String horaInicio;
 	private String horaFim;
 	private String endereco;
+	private int qtdPessoas;
+	private boolean locacaoFinalizada;
+	
+	
+	public Aluguel(Cliente c, Tema t, Double pF, String d, String hI, String hF, String e, int qP, boolean lF) {
+		setCliente(c);
+		setTema(t);
+		setPrecoFinal(pF);
+		setData(d);
+		setHoraInicio(hI);
+		setHoraFim(hF);
+		setEndereco(e);
+		setQtdPessoas(qP);
+		setLocacaoFinalizada(lF);
+	}
+	
 	
 	
 	public Cliente getCliente() {
 		return cliente;
 	}
-	public void setBozo(Cliente cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	public Tema getTema() {
@@ -53,6 +69,30 @@ public class Aluguel {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+
+
+	public int getQtdPessoas() {
+		return qtdPessoas;
+	}
+
+
+
+	public void setQtdPessoas(int qtdPessoas) {
+		this.qtdPessoas = qtdPessoas;
+	}
+
+
+
+	public boolean isLocacaoFinalizada() {
+		return locacaoFinalizada;
+	}
+
+
+
+	public void setLocacaoFinalizada(boolean locacaoFinalizada) {
+		this.locacaoFinalizada = locacaoFinalizada;
 	}
 
 }
