@@ -139,21 +139,24 @@ public class GerenciadorFesta {
 		System.out.print("\nDigite o endereco: ");
 		end = ler.nextLine();
 
-		while (true) {
+		while (true) { //enquanto se desejar adicionar um novo produto no fornecedor, ficara no while
 			System.out.print("\nDeseja adicionar um produto? (s/n) ");
 			t = ler.nextLine();
 
 			if (t.equals("s") || t.equals("S")){
 				System.out.print("\n Digite o nome do produto?");
 				t = ler.nextLine();
-				p.add(t);
+				p.add(t); // add o nome do produto em um arraylist do tipo String
 				System.out.print("Produto adicionado com sucesso!");
 
-			}else if (t.equals("n") || t.equals("N"))
+			}else if (t.equals("n") || t.equals("N"))// se o usuario nao quiser mais add produtos, quebra o laco do while com o break
 				break;
 		}
 
+		//cria um objeto fornecedor
 		Fornecedor fo = new Fornecedor(n,t,end,p);
+		
+		// add o objeto fornecedor no arraylist f
 		f.add(fo);
 	}
 
@@ -187,7 +190,7 @@ public class GerenciadorFesta {
 		System.out.print("\nDigite o preco do tema: ");
 		p = ler.nextInt();
 
-		while (true) {
+		while (true) { //enquanto se desejar add um novo fornecedor ficara no while
 			System.out.print("\nDeseja adicionar um novo fornecedor? (s/n)");
 			aux = ler.nextLine();
 
@@ -196,7 +199,8 @@ public class GerenciadorFesta {
 				if(fTemp != null) {
 					forn.add(fTemp);
 					System.out.println("Fornecedor adicionado com sucesso!");
-				}
+				}else if(fTemp == null)
+					System.out.println("Fornecedor nao encontrado ou inexistente. tente  com sucesso!");
 			}else if(aux.equals("n") || aux.equals("N"))
 				break;
 		}
@@ -332,16 +336,19 @@ public class GerenciadorFesta {
 		}while(tem == null);
 
 		
-
-		do {//continua ate a flag ser falsa, ou seja, o tema nao esta locado naquela data
-			flagLocacao = false;
+		flagLocacao = true;
+		do {//continua ate a flagLocacao ser true, ou seja, o tema nao esta locado naquela data
+			
 			System.out.print("\nDigite a data: (ex: dd/mm)");
 			d = ler.nextLine();
 			
 			for (TemaLocado temp : tL) {
-				if(temp.getData().equals(d) && temp.getTema().equals(tem))
-					flagLocacao = true;
-				System.out.print("Este tema ja esta reservado para esta data! Escolha outro tema ou outra data.");
+				if(temp.getData().equals(d) && temp.getTema().equals(tem)) {
+					System.out.print("Este tema ja esta reservado para esta data! Escolha outra data.");
+					break;
+				}else
+					flagLocacao = false;
+
 			}
 		}while(flagLocacao);
 		
@@ -922,13 +929,13 @@ public class GerenciadorFesta {
 		
 
 		//add clientes teste
-		Cliente cli1 = new Cliente("José da Silva","11971712345", "Rua Paraiso, 301", "11-10-2018");
+		Cliente cli1 = new Cliente("Rebeca Souza","11971712345", "Rua Paraiso, 301", "12-10-2018");
 		c.add(cli1);
-		Cliente cli2 = new Cliente("Maria dos Santos","2199756789", "Avenida da Conquista 3451", "15-06-2018");
+		Cliente cli2 = new Cliente("Hugo Harada","2199756789", "Avenida da Conquista 3451", "15-06-2018");
 		c.add(cli2);
 		Cliente cli3 = new Cliente("Rodolfo Santini","119767456", "Avenida dos Estados 55", "30-11-2018");
 		c.add(cli3);
-		Cliente cli4 = new Cliente("João Felipe dos Santos","1155674356", "Rua da Alagoa 33", "04-03-2018");
+		Cliente cli4 = new Cliente("Joao Felipe dos Santos","1155674356", "Rua da Alagoa 33", "04-03-2018");
 		c.add(cli4);
 		Cliente cli5 = new Cliente("Mario Pereira","1278906788", "Avenida Ajarani 204", "26-01-2018");
 		c.add(cli5);
