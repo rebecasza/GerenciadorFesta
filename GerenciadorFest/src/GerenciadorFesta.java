@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class GerenciadorFesta {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		//Iniciando as variaveis
 		ArrayList<Cliente> cliente = new  ArrayList<Cliente>();
@@ -24,62 +23,61 @@ public class GerenciadorFesta {
 			System.out.println(opcao);
 
 			switch(opcao) {
-			case 1:
+			case 1: //cadastra novo cliente
 				cadastraClient(cliente);
 				break;
-			case 2:
+			case 2: //cadastra novo fornecedor
 				cadastraFornecedor(fornecedor);
 				break;
-			case 3:
+			case 3: //cadastra novo tema
 				cadastraTema(tema, fornecedor);
 				break;
-			case 4:
+			case 4: //cadastra novo aluguel
 				cadastraAluguel(aluguel, cliente, tema, temasLocados);
 				break;
-			case 5:
+			case 5: //finaliza aluguel existente
 				finalizaAluguel(aluguel, temasLocados);
 				break;
-			case 6:
+			case 6: // imprime todos os clientes
 				imprimeTodosClientes(cliente);
 				break;
-			case 7:
+			case 7: // imprime todos os fornecedores
 				imprimeTodosFornecedores(fornecedor);
 				break;
-			case 8:
+			case 8: // imprime todos os temas
 				imprimeTodosTemas(tema);
 				break;
-			case 9:
+			case 9: //imprime todos os alugueis
 				imprimeTodosAlugueis(aluguel);
 				break;
-			case 10:
+			case 10: //imprime todos os TemaLocados e as datas da locacao
 				imprimeTodosTemasLocados(temasLocados);
 				break;
-			case 11:
+			case 11: // edita um cliente
 				editarCliente(cliente);
 				break;
-			case 12:
+			case 12: // edita um tema
 				editarTema(tema);
 				break;
-			case 13:
+			case 13: //edita um fornecedor
 				editarFornecedor(fornecedor);
 				break;
-			case 14:
+			case 14: // remove um cliente
 				removerCliente(cliente);
 				break;
-			case 15:
+			case 15: //remove um tema
 				removerTema(tema);
 				break;
-			case 16:
+			case 16: //remove um fornecedor
 				removerFornecedor(fornecedor);
 				break;
-			
 			}
 		}
-	} 
+	}
 
 	/**
 	 * Metodo para cadastrar novos clientes na lista de clientes
-	 * 
+	 *
 	 * @param c
 	 */
 	public static void cadastraClient(ArrayList <Cliente> c) {
@@ -103,13 +101,16 @@ public class GerenciadorFesta {
 		System.out.print("\nDigite a data do cadastro: ");
 		d = ler.nextLine();
 
+		//cria objeto Cliente cli
 		Cliente cli = new Cliente(n,t, end, d);
+
+		//add cli no arraylist c
 		c.add(cli);
 	}
 
 	/**
 	 * Metodo para cadastrar novos fornecedores na lista de fornecedores
-	 * 
+	 *
 	 * @param f -> variavel do tipo Fornecedor que possui todos os fornecedores cadastrados
 	 */
 	public static void cadastraFornecedor(ArrayList <Fornecedor> f) {
@@ -122,7 +123,7 @@ public class GerenciadorFesta {
 		String end = null;
 
 		System.out.println("---Cadastro Fornecedor---");
-		
+
 		System.out.print("\nDigite o nome: ");
 		n = ler.nextLine();
 
@@ -132,27 +133,30 @@ public class GerenciadorFesta {
 		System.out.print("\nDigite o endereco: ");
 		end = ler.nextLine();
 
-		while (true) {
+		while (true) { //enquanto se desejar adicionar um novo produto no fornecedor, ficara no while
 			System.out.print("\nDeseja adicionar um produto? (s/n) ");
 			t = ler.nextLine();
 
 			if (t.equals("s") || t.equals("S")){
 				System.out.print("\n Digite o nome do produto?");
 				t = ler.nextLine();
-				p.add(t);
+				p.add(t); // add o nome do produto em um arraylist do tipo String
 				System.out.print("Produto adicionado com sucesso!");
 
-			}else if (t.equals("n") || t.equals("N"))
+			}else if (t.equals("n") || t.equals("N"))// se o usuario nao quiser mais add produtos, quebra o laco do while com o break
 				break;
 		}
 
+		//cria um objeto fornecedor
 		Fornecedor fo = new Fornecedor(n,t,end,p);
+
+		// add o objeto fornecedor no arraylist f
 		f.add(fo);
 	}
 
 	/**
 	 * Metodo pra cadastrar novos temas na lista de temas
-	 * 
+	 *
 	 * @param t -> variavel do tipo Tema que possui todos os temas cadastrados
 	 * @param f -> variavel do tipo Fornecedor que possui todos os fornecedores cadastrados
 	 */
@@ -170,7 +174,7 @@ public class GerenciadorFesta {
 		Scanner ler = new Scanner(System.in);
 
 		System.out.println("---Cadastro Tema---");
-		
+
 		System.out.print("\nDigite o nome: ");
 		n = ler.nextLine();
 
@@ -180,7 +184,7 @@ public class GerenciadorFesta {
 		System.out.print("\nDigite o preco do tema: ");
 		p = ler.nextInt();
 
-		while (true) {
+		while (true) { //enquanto se desejar add um novo fornecedor ficara no while
 			System.out.print("\nDeseja adicionar um novo fornecedor? (s/n)");
 			aux = ler.nextLine();
 
@@ -189,11 +193,12 @@ public class GerenciadorFesta {
 				if(fTemp != null) {
 					forn.add(fTemp);
 					System.out.println("Fornecedor adicionado com sucesso!");
-				}
+				}else if(fTemp == null)
+					System.out.println("Fornecedor nao encontrado ou inexistente. tente  com sucesso!");
 			}else if(aux.equals("n") || aux.equals("N"))
 				break;
 		}
-				
+
 		for(Fornecedor temp: forn) {
 			i.addAll(temp.getProduto());
 		}
@@ -203,8 +208,8 @@ public class GerenciadorFesta {
 	}
 
 	/**
-	 * Metodo para procurar um fornecedor entre os cadastrados 
-	 * 
+	 * Metodo para procurar um fornecedor entre os cadastrados
+	 *
 	 * @param f -> variavel do tipo Fornecedor que possui todos os fornecedores cadastrados
 	 * @return fornecedor -> retorna o um objeto fornecedor se encontrado, caso contrario retorna null
 	 */
@@ -229,8 +234,8 @@ public class GerenciadorFesta {
 	}
 
 	/**
-	 * Metodo para procurar um cliente entre os cadastrados 
-	 * 
+	 * Metodo para procurar um cliente entre os cadastrados
+	 *
 	 * @param c -> variavel do tipo Cliente que possui todos os clientes cadastrados
 	 * @return cliente -> retorna o um objeto cliente se encontrado, caso contrario retorna null
 	 */
@@ -255,8 +260,8 @@ public class GerenciadorFesta {
 	}
 
 	/**
-	 * Metodo para procurar um tema entre os cadastrados 
-	 * 
+	 * Metodo para procurar um tema entre os cadastrados
+	 *
 	 * @param t -> variavel do tipo Tena que possui todos os temas cadastrados
 	 * @return tema -> retorna o um objeto Tema se encontrado, caso contrario retorna null
 	 */
@@ -283,13 +288,13 @@ public class GerenciadorFesta {
 
 	}
 
-	/** 
+	/**
 	 * Metodo para cadastrar uma nova locacao
-	 * 
+	 *
 	 * @param a -> variavel do tipo Aluguel que possui todas as locacoes cadastrados
 	 * @param c -> variavel do tipo Cliente que possui todos os clientes cadastrados
 	 * @param t -> variavel do tipo Tema que possui todos os temas cadastrados
-	 * @param tL -> variavel do tipo Tema que possui todos os TEMAS LOCADOS 
+	 * @param tL -> variavel do tipo Tema que possui todos os TEMAS LOCADOS
 	 */
 	public static void cadastraAluguel(ArrayList<Aluguel> a, ArrayList<Cliente> c, ArrayList<Tema> t, ArrayList<TemaLocado> tL ) {
 
@@ -303,51 +308,52 @@ public class GerenciadorFesta {
 		double pF;
 		int qP;
 		boolean flagLocacao = false;
-		
+
 		System.out.println("---Cadastro de Aluguel---");
-		
+
 		do {//busca o cliente que quer aludar
 			cli = buscaCliente(c);
 			if(cli == null)
 				System.out.println("Cliente nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(cli == null);
-		
+
 		do {//busca um tema para alugar
 			tem = buscaTema(t);
 			if(tem == null)
 				System.out.println("Tema nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(tem == null);
 
+
 		flagLocacao = true;
-		do {//continua ate a flagLocacao ser true, ou seja, o tema nao esta locado naquela data
+		do {//continua ate a flagLocacao ser falsa, ou seja, o tema nao esta locado naquela data
 
 			System.out.print("\nDigite a data: (ex: dd/mm)");
 			d = ler.nextLine();
 
 			for (TemaLocado temp : tL) {
-				if(temp.getData().equals(d) && temp.getTema().equals(tem)) {
+				if(temp.getData().equals(d) && temp.getTema().equals(tem)) { //verifica se o tema esta locado na data especificada
 					System.out.print("Este tema ja esta reservado para esta data! Escolha outra data.");
-					break;
+					break;//se estiver vai entrar aqui e vai forcar o usuario a escolher outra data
 				}else
 					flagLocacao = false;
 
 			}
-		}while(flagLocacao);	
-		
+		}while(flagLocacao);
+
 		System.out.print("\nDigite hora inicial da festa: (ex: 9am)");
 		hI = ler.nextLine();
-		
+
 		System.out.print("\nDigite hora final da festa: (ex: 6pm)");
 		hF = ler.nextLine();
-		
+
 		System.out.print("\nDigite o endereco da festa: ");
 		e = ler.nextLine();
-		
+
 		System.out.print("\nDigite a quantidade de pessoas: ");
 		qP = Integer.parseInt(ler.nextLine());
-		
-		
-		
+
+
+
 		//da os descontos de acordo com a quantidade de pessoas
 		if(qP > 50 && qP <= 100) {
 			pF = (double)tem.getPreco()*0.95;
@@ -357,7 +363,7 @@ public class GerenciadorFesta {
 			pF = (double)tem.getPreco()*0.85;
 		}else
 			pF = (double)tem.getPreco();
-		
+
 		//da desconto de acordo com a data do mes
 		if(Integer.parseInt(d.substring(0, 2))>15)
 			pF = pF*95;
@@ -365,18 +371,25 @@ public class GerenciadorFesta {
 
 		Aluguel al = new Aluguel(cli,tem,pF,d,hI,hF,e,qP,false);
 	}
-	
+
+
+	/**
+	 * Metodo que finaliza um aluguel alterando a flag LocacaoFinalizada dentro de um aluguel. Tambem remove a locacao do ArrayList de TemasLocals
+	 *
+	 * @param a -> ArrayList com todos os alugueis
+	 * @param tL -> ArrayList com todos os temas locados
+	 */
 	public static void finalizaAluguel(ArrayList<Aluguel> a, ArrayList<TemaLocado> tL) {
 		Aluguel alu = null;
 		TemaLocado tempTemaLocado = null;
 		boolean flagAchado = false;
 		Scanner ler = new Scanner(System.in);
 
-		
+
 		do {//busca o cliente quer finalizar a locacao
 			System.out.print("\n Digite o nome do cliente que quer finalizar a locacao: ");
 			String nome = ler.nextLine();
-			
+
 			for(Aluguel al:a) {
 				if(al.getCliente().getNome().equals(nome)) {
 					alu = al;
@@ -387,38 +400,48 @@ public class GerenciadorFesta {
 				System.out.println("Cliente nao encontrado! Tente novamente.\n\n");
 		}while(!flagAchado);
 		System.out.println("Cliente encontrado!");
-		
-		
-		
+
+
+
 		if(alu != null)
 			alu.setLocacaoFinalizada(true);
-		
+
 		for(TemaLocado temaLocado: tL) {
 			if (temaLocado.getTema().equals(alu.getTema()) && temaLocado.getData().equals(alu.getData())) {
 				tempTemaLocado = tL.get((tL.lastIndexOf(temaLocado)));
 			}
 		}
-		
+
 		if(tempTemaLocado!=null)
 			tL.remove(tempTemaLocado);
-		
+
 		System.out.println("\n\nAluguel finalizado com sucesso!\n");
-		
+
 	}
-	
+
+	/**
+	 * Metodopara imprimir um Cliente no console
+	 *
+	 * @param cli -> variavel do tipo Cliente
+	 */
 	public static void imprimeUmCliente(Cliente cli) {
-		
+
 		System.out.println("\n\n----Informacoes do cliente----");
 		System.out.println("Nome: "+cli.getNome());
 		System.out.println("Telefone: "+cli.getTelefone());
 		System.out.println("Endereco: "+cli.getEndereco());
 		System.out.println("Cliente desde: "+cli.getDataCadastro());
 		System.out.println("\n");
-		
+
 	}
-	
+
+	/**
+	 * Metodo para imprimir todos os clientes existentes no arrayList c
+	 *
+	 * @param c -> variavel do tipo ArrayList de Cliente que possui todos os clientes
+	 */
 	public static void imprimeTodosClientes(ArrayList<Cliente> c) {
-		
+
 		if(c.isEmpty()) {
 			System.out.println("\nSem clientes cadastrados.");
 			return;
@@ -427,19 +450,29 @@ public class GerenciadorFesta {
 			imprimeUmCliente(cli);
 	}
 
+	/**
+	 * Metodo para imprimir um Fornecedor no console
+	 *
+	 * @param forn -> variavel do tipo Fornecedor
+	 */
 	public static void imprimeUmFornecedor(Fornecedor forn) {
-		
+
 		System.out.println("\n\n----Informacoes do fornecedor----");
 		System.out.println("Nome: "+forn.getNome());
 		System.out.println("Telefone: "+forn.getTelefone());
 		System.out.println("Endereco: "+forn.getEndereco());
-		
+
 		for(String s : forn.getProduto())
 			System.out.println("Produto:" +s);
 	}
-	
+
+	/**
+	 * Metodo para imprimir todos os fornecedores existentes no arrayList f
+	 *
+	 * @param f -> variavel do tipo ArrayList de Fornecedor que possui todos os fornecedores
+	 */
 	public static void imprimeTodosFornecedores(ArrayList<Fornecedor> f) {
-		
+
 		if(f.isEmpty()) {
 			System.out.println("\nSem fornecedores cadastrados.");
 			return;
@@ -447,13 +480,19 @@ public class GerenciadorFesta {
 		for(Fornecedor forn: f)
 			imprimeUmFornecedor(forn);
 	}
-	
+
+
+	/**
+	 * Metodo para imprimir um Tema na console
+	 *
+	 * @param t -> variavel do tipo Tema
+	 */
 	public static void imprimeUmTema(Tema t) {
-		
+
 		System.out.println("\n\n----Informacoes do Tema----\n");
 		System.out.println("Nome: "+t.getNome());
 		System.out.println("Cor da toalha: "+t.getCorToalha());
-		
+
 		for(Fornecedor f : t.getFornecedor())
 			System.out.println("Fornecedor: " + f.getNome());
 
@@ -462,11 +501,16 @@ public class GerenciadorFesta {
 
 		System.out.println("Preco sem desconto: "+t.getPreco());
 		System.out.println("\n");
-		
+
 	}
-	
+
+	/**
+	 * Metodo para imprimir todos os temas existentes no arrayList t
+	 *
+	 * @param t -> variavel do tipo ArrayList de Tema que possui todos os Temas
+	 */
 	public static void imprimeTodosTemas(ArrayList<Tema> t) {
-		
+
 		if(t.isEmpty()) {
 			System.out.println("\nSem temas cadastrados.");
 			return;
@@ -474,9 +518,14 @@ public class GerenciadorFesta {
 		for(Tema tema: t)
 			imprimeUmTema(tema);
 	}
-	
+
+	/**
+	 * Metodo para imprimir uma locacao no console
+	 *
+	 * @param a -> variavel do tipo Aluguel
+	 */
 	public static void imprimeUmAluguel(Aluguel a) {
-		
+
 		System.out.println("\n\n----Informacoes do Aluguel----\n");
 		System.out.println("Cliente: "+a.getCliente().getNome());
 		System.out.println("Tema da festa: "+a.getTema().getNome());
@@ -490,20 +539,30 @@ public class GerenciadorFesta {
 
 
 		System.out.println("\n");
-		
+
 	}
-	
+
+	/**
+	 * Metodo para imprimir todos os alugueis existentes no arrayList a
+	 *
+	 * @param a -> variavel do tipo ArrayList de Aluguel que possui todos os alugueis cadastradosv
+	 */
 	public static void imprimeTodosAlugueis(ArrayList<Aluguel> a) {
-		
+
 		if(a.isEmpty()) {
 			System.out.println("\nSem alugueis cadastrados.");
 			return;
 		}
 		for(Aluguel al: a)
 			imprimeUmAluguel(al);
-		
+
 	}
-	
+
+	/**
+	 * Metodo para imprimir um Tema Locado
+	 *
+	 * @param tl variavel do tipo TemaLocado
+	 */
 	public static void imprimeUmTemaLocado(TemaLocado tl) {
 		System.out.println("\n\n----Informacoes sobre temas locados----\n");
 		System.out.println("Nome do tema: " + tl.getTema().getNome());
@@ -511,9 +570,14 @@ public class GerenciadorFesta {
 		System.out.println("\n");
 
 	}
-	
+
+	/**
+	 * Metodo para imprimir todos os temas locados existentes no arrayList tl
+	 *
+	 * @param tl ->variavel do tipo ArrayList de TemaLocado que possui todos os temas locados
+	 */
 	public static void imprimeTodosTemasLocados(ArrayList<TemaLocado> tl) {
-		
+
 		if(tl.isEmpty()) {
 			System.out.println("\nSem temas locados.");
 			return;
@@ -522,9 +586,15 @@ public class GerenciadorFesta {
 			imprimeUmTemaLocado(temp);
 
 	}
-	
+
+
+	/**
+	 * Metodo para editar um cliente
+	 *
+	 * @param c -> ArrayList com todos os clientes
+	 */
 	public static void editarCliente(ArrayList<Cliente> c) {
-		
+
 		Cliente cli;
 		String aux = null;
 		Scanner ler = new Scanner(System.in);
@@ -537,7 +607,7 @@ public class GerenciadorFesta {
 			if(cli == null)
 				System.out.println("Cliente nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(cli == null);
-		
+
 		aux = null;
 		System.out.print("\nDeseja editar o nome? (s)");
 		aux = ler.nextLine();
@@ -547,7 +617,7 @@ public class GerenciadorFesta {
 			cli.setNome(ler.nextLine());
 			System.out.println("Nome editado com sucesso!");
 		}
-			
+
 		aux = null;
 		System.out.print("\nDeseja editar o telefone? (s)");
 		aux = ler.nextLine();
@@ -557,7 +627,7 @@ public class GerenciadorFesta {
 			cli.setTelefone(ler.nextLine());
 			System.out.println("Telefone editado com sucesso!");
 		}
-		
+
 		aux = null;
 		System.out.print("\nDeseja editar o endereco? (s)");
 		aux = ler.nextLine();
@@ -567,13 +637,18 @@ public class GerenciadorFesta {
 			cli.setEndereco(ler.nextLine());
 			System.out.println("Endereco editado com sucesso!");
 		}
-		
+
 		System.out.println("Edicoes realizadas com sucesso!");
 
 	}
-	
+
+	/**
+	 * Metodo para editar um fornecedor
+	 *
+	 * @param f -> ArrayList com todos os fornecedores
+	 */
 	public static void editarFornecedor(ArrayList<Fornecedor> f) {
-		
+
 		Fornecedor forn;
 		String aux = null;
 		Scanner ler = new Scanner(System.in);
@@ -586,7 +661,7 @@ public class GerenciadorFesta {
 			if(forn == null)
 				System.out.println("Fornecedor nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(forn == null);
-		
+
 		aux = null;
 		System.out.print("\nDeseja editar o nome? (s)");
 		aux = ler.nextLine();
@@ -596,7 +671,7 @@ public class GerenciadorFesta {
 			forn.setNome(ler.nextLine());
 			System.out.println("Nome editado com sucesso!");
 		}
-			
+
 		aux = null;
 		System.out.print("\nDeseja editar o telefone? (s)");
 		aux = ler.nextLine();
@@ -606,7 +681,7 @@ public class GerenciadorFesta {
 			forn.setTelefone(ler.nextLine());
 			System.out.println("Telefone editado com sucesso!");
 		}
-		
+
 		aux = null;
 		System.out.print("\nDeseja editar o endereco? (s)");
 		aux = ler.nextLine();
@@ -616,14 +691,19 @@ public class GerenciadorFesta {
 			forn.setEndereco(ler.nextLine());
 			System.out.println("Endereco editado com sucesso!");
 		}
-		
+
 		//TODO: adicionar ou remover produtos do fornecedor
-		
+
 		System.out.println("Edicoes realizadas com sucesso!");
 	}
-	
+
+	/**
+	 * Metodo para editar um Tema
+	 *
+	 * @param t -> ArrayList com todos os temas
+	 */
 	public static void editarTema(ArrayList<Tema> t) {
-		
+
 		Tema tem;
 		String aux = null;
 		Scanner ler = new Scanner(System.in);
@@ -637,7 +717,7 @@ public class GerenciadorFesta {
 			if(tem == null)
 				System.out.println("Tema nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(tem == null);
-		
+
 		aux = null;
 		System.out.print("\nDeseja editar o nome? (s)");
 		aux = ler.nextLine();
@@ -647,7 +727,7 @@ public class GerenciadorFesta {
 			tem.setNome(ler.nextLine());
 			System.out.println("Nome editado com sucesso!");
 		}
-			
+
 		aux = null;
 		System.out.print("\nDeseja editar a cor da tolha? (s)");
 		aux = ler.nextLine();
@@ -657,7 +737,7 @@ public class GerenciadorFesta {
 			tem.setCorToalha(ler.nextLine());
 			System.out.println("Cor da tolha editada com sucesso!");
 		}
-		
+
 		aux = null;
 		System.out.print("\nDeseja editar o preco? (s)");
 		aux = ler.nextLine();
@@ -667,105 +747,64 @@ public class GerenciadorFesta {
 			tem.setPreco(ler.nextInt());
 			System.out.println("Preco editado com sucesso!");
 		}
-		
-
-//
-//		while (true) {
-//			System.out.print("\nDeseja adicionar um novo fornecedor? (s/n)");
-//			aux = ler.nextLine();
-//
-//			if (aux.equals("s") || aux.equals("S")){
-//				fTemp = buscaFornecedor(f);
-//				if(fTemp != null) {
-//					forn.add(fTemp);
-//					System.out.println("Fornecedor adicionado com sucesso!");
-//				}
-//			}else if(aux.equals("n") || aux.equals("N"))
-//				break;
-//		}
-//		
-//		ArrayList<String> i = new ArrayList<String>();
-//		ArrayList<Fornecedor> forn = new ArrayList<Fornecedor>();
-//		String n = null;
-//		String cT = null;
-//		String aux = null;
-//		int p = 0;
-//
-//		Scanner ler = new Scanner(System.in);
-//
-//		System.out.println("---Cadastro Tema---");
-//		
-//		System.out.print("\nDigite o nome: ");
-//		n = ler.nextLine();
-//
-//		System.out.print("\nDigite a cor da toalha: ");
-//		cT = ler.nextLine();
-//
-//		System.out.print("\nDigite o preco do tema: ");
-//		p = ler.nextInt();
-//
-//		while (true) {
-//			System.out.print("\nDeseja adicionar um novo fornecedor? (s/n)");
-//			aux = ler.nextLine();
-//
-//			if (aux.equals("s") || aux.equals("S")){
-//				fTemp = buscaFornecedor(f);
-//				if(fTemp != null) {
-//					forn.add(fTemp);
-//					System.out.println("Fornecedor adicionado com sucesso!");
-//				}
-//			}else if(aux.equals("n") || aux.equals("N"))
-//				break;
-//		}
-//				
-//		for(Fornecedor temp: forn) {
-//			i.addAll(temp.getProduto());
-//		}
-//
-//		Tema tema = new Tema(n, i, cT, forn, p);
-//		t.add(tema);		
 		System.out.println("Edicoes realizadas com sucesso!");
 	}
-	
+
+
+	/**
+	 * Metodo para remover um cliente
+	 *
+	 * @param c -> ArrayList com todos os clientes
+	 */
 	public static void removerCliente(ArrayList<Cliente> c) {
 		Cliente cli;
-		
+
 		do {//busca o cliente que se quer remover
 			cli = buscaCliente(c);
 			if(cli == null)
 				System.out.println("Cliente nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(cli == null);
-		
+
 		c.remove(cli);
 	}
-	
+
+	/**
+	 * Metodo para remover um fornecedor
+	 *
+	 * @param f -> ArrayList com todos os fornecedores
+	 */
 	public static void removerFornecedor(ArrayList<Fornecedor> f) {
 		Fornecedor forn;
-		
+
 		do {
 			forn = buscaFornecedor(f);
 			if(forn == null)
 				System.out.println("Fornecedor nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(forn == null);
-		
+
 		f.remove(forn);
 	}
-	
+
+	/**
+	 * Metodo para remover um Tema
+	 *
+	 * @param t -> ArrayList com todos os temas
+	 */
 	public static void removerTema(ArrayList<Tema> t) {
 		Tema tem;
-		
+
 		do {//busca o tema que se quer remover
 			tem = buscaTema(t);
 			if(tem == null)
 				System.out.println("Tema nao encontrado ou inexistente! Tente novamente.\n\n");
 		}while(tem == null);
-		
+
 		t.remove(tem);
 	}
-	
+
 	/**
 	 * Metodo que desenha o menu no console
-	 * 
+	 *
 	 * @return inteiro -> retorna o valor escolhido no menu
 	 */
 	public static int menu() {
@@ -793,8 +832,8 @@ public class GerenciadorFesta {
 
 
 
-		
-		
+
+
 		System.out.print("Escolha uma opcao: ");
 
 
@@ -804,11 +843,19 @@ public class GerenciadorFesta {
 		return x;
 
 	}
-	
-	
+
+	/**
+	 * Metodo para inicializar alguns objetos
+	 *
+	 * @param c -> ArrayList de Clientes
+	 * @param f -> ArrayList de Fornecedores
+	 * @param a -> ArrayList de Alugueis
+	 * @param t -> ArrayList de Temas
+	 * @param tL -> ArrayList de TemasLocados
+	 */
 	public static void inicializaTestes(ArrayList<Cliente> c, ArrayList<Fornecedor> f, ArrayList<Aluguel> a, ArrayList<Tema> t, ArrayList<TemaLocado> tL) {
-		
-		
+
+
 
 		//add clientes teste
 		Cliente cli1 = new Cliente("Rebeca Souza","11971712345", "Rua Paraiso, 301", "12-10-2018");
@@ -825,7 +872,7 @@ public class GerenciadorFesta {
 		c.add(cli6);
 		Cliente cli7 = new Cliente("Ana Paula dos Santos","1176853446", "Rua dos Perdizes, 102", "08-07-2018");
 		c.add(cli7);
-		
+
 		//add fornecedores teste
 		ArrayList<String> p1 = new ArrayList<String>();
 		p1.add("Lenco");
@@ -839,32 +886,32 @@ public class GerenciadorFesta {
 		p3.add("Potes");
 		p3.add("Lembracas");
 		p3.add("Embalagens");
-		
+
 		Fornecedor forn1 = new Fornecedor("Doces e cia", "1176612345","Rua Fernandes, 402",p1);
 		f.add(forn1);
 		Fornecedor forn2 = new Fornecedor("Emabalagens e cia", "1176554433","Avenida Mariana, 5567",p2);
 		f.add(forn2);
 		Fornecedor forn3 = new Fornecedor("Descartaveis e cia", "11765543878","Rua das Pedras, 897",p3);
 		f.add(forn3);
-		
+
 		//add temas teste
-		
+
 		ArrayList<String> ps1 = new ArrayList<String>() ;
 		ps1.addAll(forn1.getProduto());
 		ps1.addAll(forn2.getProduto());
-		
+
 		ArrayList<Fornecedor> f1 = new ArrayList<Fornecedor>();
 		f1.add(forn1);
 		f1.add(forn2);
-		
+
 		ArrayList<String> ps2 = new ArrayList<String>() ;
 		ps2.addAll(forn3.getProduto());
 		ps2.addAll(forn2.getProduto());
-		
+
 		ArrayList<Fornecedor> f2 = new ArrayList<Fornecedor>();
 		f2.add(forn3);
-		f2.add(forn2);		
-		
+		f2.add(forn2);
+
 		Tema tema1 = new Tema("Festa colorida", ps1,"Branco", f1, 100);
 		t.add(tema1);
 		Tema tema2 = new Tema("Festa sem cor", ps2,"Cinza", f2, 200);
@@ -877,7 +924,7 @@ public class GerenciadorFesta {
 		t.add(tema4);
 		Tema tema6 = new Tema("Festa Heroi", ps2,"Verde", f2, 600);
 		t.add(tema6);
-		
+
 		//add aluguel teste
 		Aluguel a1 = new Aluguel(cli1,tema1,tema1.getPreco()*0.8,"29/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a1);
@@ -885,13 +932,16 @@ public class GerenciadorFesta {
 		a.add(a2);
 		Aluguel a3 = new Aluguel(cli3,tema3,tema3.getPreco()*0.8,"15/12","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a3);
+
 		Aluguel a4 = new Aluguel(cli3,tema4,tema4.getPreco()*0.8,"13/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a4);
+
 		Aluguel a5 = new Aluguel(cli3,tema5,tema5.getPreco()*0.8,"05/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a5);
+
 		Aluguel a6 = new Aluguel(cli3,tema6,tema6.getPreco()*0.8,"20/12","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a6);
-		
+
 		//add Temas locados
 		TemaLocado tLoc1 = new TemaLocado(tema1,"29/12");
 		TemaLocado tLoc2 = new TemaLocado(tema2,"04/12");
@@ -906,10 +956,10 @@ public class GerenciadorFesta {
 		tL.add(tLoc4);
 		tL.add(tLoc5);
 		tL.add(tLoc6);
-		
-		
-		
-		
+
+
+
+
 	}
 
 }
