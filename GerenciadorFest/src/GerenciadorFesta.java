@@ -337,15 +337,15 @@ public class GerenciadorFesta {
 
 		
 		flagLocacao = true;
-		do {//continua ate a flagLocacao ser true, ou seja, o tema nao esta locado naquela data
+		do {//continua ate a flagLocacao ser falsa, ou seja, o tema nao esta locado naquela data
 			
 			System.out.print("\nDigite a data: (ex: dd/mm)");
 			d = ler.nextLine();
 			
 			for (TemaLocado temp : tL) {
-				if(temp.getData().equals(d) && temp.getTema().equals(tem)) {
+				if(temp.getData().equals(d) && temp.getTema().equals(tem)) { //verifica se o tema esta locado na data especificada
 					System.out.print("Este tema ja esta reservado para esta data! Escolha outra data.");
-					break;
+					break;//se estiver vai entrar aqui e vai forcar o usuario a escolher outra data
 				}else
 					flagLocacao = false;
 
@@ -999,14 +999,19 @@ public class GerenciadorFesta {
 		//add aluguel teste
 		Aluguel a1 = new Aluguel(cli1,tema1,tema1.getPreco()*0.8,"12/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a1);
+		
 		Aluguel a2 = new Aluguel(cli3,tema2,tema2.getPreco()*0.8,"10/12","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a2);
+		
 		Aluguel a3 = new Aluguel(cli3,tema3,tema3.getPreco()*0.8,"15/05","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a3);
+		
 		Aluguel a4 = new Aluguel(cli3,tema4,tema4.getPreco()*0.8,"13/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a4);
+		
 		Aluguel a5 = new Aluguel(cli3,tema5,tema5.getPreco()*0.8,"05/12","9am","18pm","Avenida Paulista",80,false);
 		a.add(a5);
+		
 		Aluguel a6 = new Aluguel(cli3,tema6,tema6.getPreco()*0.8,"20/12","9am","18pm","Avenida Reboucas",80,false);
 		a.add(a6);
 		
